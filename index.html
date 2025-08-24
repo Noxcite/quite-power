@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Noxcite — Quiet power. Discipline. Apparel built for movement."
+    />
+    <meta name="theme-color" content="#1972C2" />
+    <title>Noxcite</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <!-- Inter font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #1972c2;
+        --bg: #ffffff;
+        --text: #0d0d0d;
+        --muted: #6b7280; /* gray-500 */
+        --line: #e5e7eb; /* gray-200 */
+        --card: #f8fafc; /* gray-50 */
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .container {
+        width: min(1200px, 92vw);
+        margin-inline: auto;
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+        transition: all 0.3s ease;
+      }
+      .nav.glass {
+        background: rgba(255, 255, 255, 0.7);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        backdrop-filter: saturate(180%) blur(12px);
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
+      }
+      .nav.scrolled {
+        padding: 8px 0;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand img {
+        height: 32px;
+        width: auto;
+      }
+
+      .nav-links {
+        display: none;
+        gap: 22px;
+        align-items: center;
+      }
+      .nav-links a {
+        font-weight: 500;
+        opacity: 0.9;
+      }
+      .nav-cta {
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        color: var(--bg);
+        background: var(--accent);
+        font-weight: 600;
+        box-shadow: 0 8px 20px rgba(25, 114, 194, 0.25);
+        transition: transform 0.12s ease, box-shadow 0.2s ease;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(25, 114, 194, 0.28);
+      }
+
+      .hamburger {
+        display: inline-flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .hamburger svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      @media (min-width: 992px) {
+        .nav-links {
+          display: flex;
+        }
+        .hamburger {
+          display: none;
+        }
+      }
+
+      /* Mobile drawer */
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .drawer {
+        position: fixed;
+        inset: 0 0 auto auto;
+        top: 64px;
+        right: 0;
+        width: min(88vw, 360px);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-left: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        translate: 100% 0;
+        transition: translate 0.3s ease;
+        box-shadow: var(--shadow);
+        border-bottom-left-radius: 14px;
+      }
+      .drawer nav {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+      }
+      .drawer a {
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+      .drawer a:hover {
+        background: var(--card);
+      }
+      .drawer.open {
+        translate: 0 0;
+      }
+      .drawer-backdrop.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        overflow: clip;
+      }
+      .hero .container {
+        display: grid;
+        gap: 26px;
+        padding: clamp(58px, 12vw, 120px) 0;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--muted);
+        background: #fff;
+      }
+      .eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 6px rgba(25, 114, 194, 0.12);
+      }
+      .hero h1 {
+        font-size: clamp(38px, 6vw, 64px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 8px 0 10px;
+      }
+      .hero p {
+        font-size: clamp(16px, 2.2vw, 18px);
+        color: var(--muted);
+        max-width: 58ch;
+      }
+      .cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 600;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+        box-shadow: 0 12px 30px rgba(25, 114, 194, 0.25);
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .orbs {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .orb {
+        position: absolute;
+        filter: blur(30px);
+        opacity: 0.32;
+      }
+      .orb.one {
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(
+          closest-side,
+          var(--accent),
+          transparent 70%
+        );
+        top: -120px;
+        left: -120px;
+      }
+      .orb.two {
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(closest-side, #60a5fa, transparent 70%);
+        bottom: -140px;
+        right: -120px;
+      }
+
+      /* Feature cards */
+      .features {
+        padding: 22px 0 60px;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 768px) {
+        .grid.cols-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .grid.cols-4 {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+        box-shadow: var(--shadow);
+        transition: transform 0.15s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+      }
+      .card h3 {
+        margin: 12px 0 6px;
+        font-size: 18px;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .icon {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(25, 114, 194, 0.1);
+      }
+
+      /* Product rail */
+      .rail-wrap {
+        position: relative;
+      }
+      .rail {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 78%;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 6px;
+      }
+      .rail::-webkit-scrollbar {
+        height: 8px;
+      }
+      .rail::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 999px;
+      }
+      @media (min-width: 640px) {
+        .rail {
+          grid-auto-columns: 50%;
+        }
+      }
+      @media (min-width: 992px) {
+        .rail {
+          grid-auto-columns: 25%;
+        }
+      }
+
+      .product {
+        position: relative;
+        scroll-snap-align: start;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-rows: 1fr auto;
+      }
+      .product .media {
+        aspect-ratio: 4/5;
+        background: linear-gradient(180deg, #e6f0fb, #fff);
+        display: grid;
+        place-items: center;
+      }
+      .product img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .product .meta {
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .price {
+        font-weight: 700;
+      }
+      .pill {
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: #eef6ff;
+        color: var(--accent);
+        border: 1px solid rgba(25, 114, 194, 0.3);
+      }
+
+      /* Section headers */
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 24px 0 12px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(22px, 3.6vw, 32px);
+        letter-spacing: -0.01em;
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* Story / Vision */
+      .story {
+        padding: 70px 0;
+      }
+      .story .wrap {
+        display: grid;
+        gap: 22px;
+      }
+      @media (min-width: 992px) {
+        .story .wrap {
+          grid-template-columns: 1.2fr 1fr;
+          align-items: center;
+        }
+      }
+      .story .panel {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: clamp(16px, 3.2vw, 26px);
+        box-shadow: var(--shadow);
+      }
+      .list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .list li {
+        display: flex;
+        gap: 10px;
+        align-items: start;
+      }
+      .tick {
+        width: 18px;
+        height: 18px;
+        border-radius: 6px;
+        background: var(--accent);
+        display: inline-grid;
+        place-items: center;
+      }
+      .tick svg {
+        width: 12px;
+        height: 12px;
+        stroke: #fff;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 60px;
+      }
+      .footer {
+        padding: 26px 0;
+        display: grid;
+        gap: 18px;
+      }
+      @media (min-width: 768px) {
+        .footer {
+          grid-template-columns: 1fr auto;
+          align-items: center;
+        }
+      }
+      .socials {
+        display: flex;
+        gap: 10px;
+      }
+      .socials a {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .socials a:hover {
+        border-color: var(--accent);
+        box-shadow: 0 6px 16px rgba(25, 114, 194, 0.15);
+      }
+
+      /* Scroll animations */
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      [data-animate].in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Accessibility helpers */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav glass" id="nav">
+        <a class="brand" href="#" aria-label="Noxcite home">
+          <img
+            src="assets/logo.png"
+            alt="Noxcite logo"
+            height="32"
+            width="120"
+          />
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#shop">Shop</a>
+          <a href="#vision">Vision</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+          <a class="nav-cta" href="#shop">Shop Now</a>
+        </nav>
+        <button
+          class="hamburger"
+          id="menuBtn"
+          aria-label="Open menu"
+          aria-controls="drawer"
+          aria-expanded="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-backdrop" id="backdrop" hidden></div>
+      <div
+        class="drawer"
+        id="drawer"
+        aria-hidden="true"
+        aria-label="Mobile menu"
+      >
+        <nav>
+          <a href="#shop">Shop</a>
+          <a href="#vision">Vision</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+          <a class="nav-cta" href="#shop">Shop Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="home">
+        <div class="orbs" aria-hidden="true">
+          <div class="orb one"></div>
+          <div class="orb two"></div>
+        </div>
+        <div class="container" data-animate>
+          <span class="eyebrow"
+            ><span class="dot"></span> Built for movement</span
+          >
+          <h1>Quiet Power. Relentless Discipline.</h1>
+          <p>
+            Noxcite crafts performance apparel for athletes who speak softly and
+            work loudly. Minimal design, maximum intent — made to move on
+            courts, in the gym, and in the ring.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#shop">Shop Apparel</a>
+            <a class="btn" href="#vision">Our Vision</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features / pillars -->
+      <section class="features container" id="features">
+        <div class="section-head" data-animate>
+          <h2>Engineered Simplicity</h2>
+          <p>Minimal look. Technical feel.</p>
+        </div>
+        <div class="grid cols-4">
+          <article class="card" data-animate>
+            <div class="icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+              >
+                <path d="M6 10h12M4 14h16M8 18h8" />
+              </svg>
+            </div>
+            <h3>Clean Aesthetic</h3>
+            <p>
+              Neutral palettes and refined typography for a timeless, global
+              look.
+            </p>
+          </article>
+          <article class="card" data-animate>
+            <div class="icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="14" rx="2" />
+                <path d="M7 21l5-4 5 4" />
+              </svg>
+            </div>
+            <h3>Outdoor Ready</h3>
+            <p>
+              Built for the court — football, basketball, volleyball, tennis and
+              more.
+            </p>
+          </article>
+          <article class="card" data-animate>
+            <div class="icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+              >
+                <path d="M4 7h16v10H4z" />
+                <path d="M8 7V5a4 4 0 0 1 8 0v2" />
+              </svg>
+            </div>
+            <h3>Gym Proven</h3>
+            <p>Sweat‑tested fabrics with comfort, stretch and breathability.</p>
+          </article>
+          <article class="card" data-animate>
+            <div class="icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="var(--accent)"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M7 8h10M9 16h6" />
+              </svg>
+            </div>
+            <h3>Fight Culture</h3>
+            <p>
+              Durable gear inspired by combat sports — sharp, silent, focused.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Shop rail -->
+      <section class="container" id="shop">
+        <div class="section-head" data-animate>
+          <h2>New Drops</h2>
+          <p>Tap a card to view details.</p>
+        </div>
+        <div class="rail-wrap" data-animate>
+          <div class="rail" id="rail">
+            <!-- Product 1 -->
+            <article class="product">
+              <div class="media">
+                <!-- Replace with your image: assets/tee-black.jpg -->
+                <img
+                  src=""
+                  alt="Noxcite Blackout Tee"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <div
+                  aria-hidden="true"
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(
+                        70% 60% at 50% 30%,
+                        rgba(25, 114, 194, 0.12),
+                        transparent
+                      ),
+                      linear-gradient(180deg, #f0f6ff, #fff);
+                  "
+                ></div>
+              </div>
+              <div class="meta">
+                <div>
+                  <strong>Blackout Tee</strong>
+                  <div class="pill">Limited</div>
+                </div>
+                <div class="price">$39</div>
+              </div>
+            </article>
+            <!-- Product 2 -->
+            <article class="product">
+              <div class="media">
+                <!-- Replace with your image: assets/hoodie-navy.jpg -->
+                <img
+                  src=""
+                  alt="Noxcite Core Hoodie"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <div
+                  aria-hidden="true"
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(
+                        70% 60% at 50% 30%,
+                        rgba(25, 114, 194, 0.12),
+                        transparent
+                      ),
+                      linear-gradient(180deg, #eff6ff, #fff);
+                  "
+                ></div>
+              </div>
+              <div class="meta">
+                <div>
+                  <strong>Core Hoodie</strong>
+                  <div class="pill">Restock</div>
+                </div>
+                <div class="price">$69</div>
+              </div>
+            </article>
+            <!-- Product 3 -->
+            <article class="product">
+              <div class="media">
+                <!-- Replace with your image: assets/shorts.jpg -->
+                <img
+                  src=""
+                  alt="Noxcite Flex Shorts"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <div
+                  aria-hidden="true"
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(
+                        70% 60% at 50% 30%,
+                        rgba(25, 114, 194, 0.12),
+                        transparent
+                      ),
+                      linear-gradient(180deg, #eaf2ff, #fff);
+                  "
+                ></div>
+              </div>
+              <div class="meta">
+                <div>
+                  <strong>Flex Shorts</strong>
+                  <div class="pill">Bestseller</div>
+                </div>
+                <div class="price">$45</div>
+              </div>
+            </article>
+            <!-- Product 4 -->
+            <article class="product">
+              <div class="media">
+                <!-- Replace with your image: assets/cap.jpg -->
+                <img
+                  src=""
+                  alt="Noxcite Minimal Cap"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                />
+                <div
+                  aria-hidden="true"
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(
+                        70% 60% at 50% 30%,
+                        rgba(25, 114, 194, 0.12),
+                        transparent
+                      ),
+                      linear-gradient(180deg, #eaf2ff, #fff);
+                  "
+                ></div>
+              </div>
+              <div class="meta">
+                <div>
+                  <strong>Minimal Cap</strong>
+                  <div class="pill">New</div>
+                </div>
+                <div class="price">$29</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Story / Vision -->
+      <section class="story" id="vision">
+        <div class="container wrap">
+          <div class="panel" data-animate>
+            <h2 style="margin: 0 0 8px">The Vision</h2>
+            <p style="margin: 0 0 10px; color: var(--muted)">
+              From a single online store to the world’s most complete sports
+              space. Noxcite will expand into outdoor courts, a multi‑floor gym,
+              a fight academy and a flagship apparel floor — all under one roof.
+            </p>
+            <ul class="list">
+              <li>
+                <span class="tick"
+                  ><svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" /></svg
+                ></span>
+                <div>
+                  <strong>Outdoor Courts</strong>
+                  <div class="muted">
+                    Football, basketball, volleyball and tennis areas designed
+                    for community and performance.
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="tick"
+                  ><svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" /></svg
+                ></span>
+                <div>
+                  <strong>Gym Floors</strong>
+                  <div class="muted">
+                    Three levels with strength, conditioning and recovery zones.
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="tick"
+                  ><svg viewBox="0 0 24 24" fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" /></svg
+                ></span>
+                <div>
+                  <strong>Fight Academy</strong>
+                  <div class="muted">
+                    Dedicated space for combat sports — technique, discipline,
+                    respect.
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="tick"
+                  ><svg viewBox="0 0 24 24  " fill="none" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" /></svg
+                ></span>
+                <div>
+                  <strong>Apparel</strong>
+                  <div class="muted">
+                    Minimal silhouettes, premium materials and functional
+                    details.
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="panel" data-animate>
+            <h3 style="margin: 0 0 8px">Why Noxcite</h3>
+            <p style="margin: 0 0 12px; color: var(--muted)">
+              We believe in quiet excellence. Our garments are designed to stay
+              out of your way while you do the work. Simple lines, sharp cuts,
+              focused energy.
+            </p>
+            <div class="grid">
+              <div class="card" style="margin: 0" aria-live="polite">
+                <h3 style="margin: 0 0 6px; font-size: 16px">
+                  Global Standards
+                </h3>
+                <p style="margin: 0">
+                  Sizing, materials and QA aligned with international
+                  benchmarks.
+                </p>
+              </div>
+              <div class="card" style="margin: 0">
+                <h3 style="margin: 0 0 6px; font-size: 16px">
+                  Sustainable Mindset
+                </h3>
+                <p style="margin: 0">
+                  Made to last to reduce waste — buy less, use longer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="container" id="contact" aria-labelledby="contact-title">
+        <div class="section-head" data-animate>
+          <h2 id="contact-title">Contact</h2>
+          <p>For partnerships and press.</p>
+        </div>
+        <div class="card" data-animate>
+          <p style="margin: 0">
+            Email:
+            <a
+              href="mailto:hello@noxcite.com"
+              aria-label="Email hello at noxcite dot com"
+              >hello@noxcite.com</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <img
+            src="assets/logo.png"
+            alt="Noxcite logo"
+            height="22"
+            width="80"
+          />
+          <span style="color: var(--muted); font-size: 14px"
+            >© <span id="year"></span> Noxcite. All rights reserved.</span
+          >
+        </div>
+        <div class="socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram">
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .6 5.8 3 3 0 0 0 2.1 2.1C4.4 20.5 12 20.5 12 20.5s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.75 15.5V8.5L15.5 12l-5.75 3.5z"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M21 8.3a7 7 0 0 1-4.6-1.7v7.1a6.2 6.2 0 1 1-6.2-6.2c.3 0 .6 0 .9.1v3.3a2.9 2.9 0 1 0 2.9 2.9V2h3.1a7 7 0 0 0 4 4.1v2.2z"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M18.4 2H21l-6.5 7.4L22 22h-6.8l-4.8-6.3L4.7 22H3l7-8L2 2h6.9l4.4 5.8L18.4 2Zm-2.4 18h1.2L7 4H5.7l10.3 16Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Sticky nav shrink on scroll
+      const nav = document.getElementById("nav");
+      const onScroll = () => {
+        if (window.scrollY > 8) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // Mobile drawer
+      const btn = document.getElementById("menuBtn");
+      const drawer = document.getElementById("drawer");
+      const backdrop = document.getElementById("backdrop");
+      function toggleDrawer(force) {
+        const willOpen = force ?? !drawer.classList.contains("open");
+        drawer.classList.toggle("open", willOpen);
+        btn.setAttribute("aria-expanded", String(willOpen));
+        drawer.setAttribute("aria-hidden", String(!willOpen));
+        backdrop.toggleAttribute("hidden", !willOpen);
+        backdrop.classList.toggle("show", willOpen);
+        document.body.style.overflow = willOpen ? "hidden" : "";
+      }
+      btn.addEventListener("click", () => toggleDrawer());
+      backdrop.addEventListener("click", () => toggleDrawer(false));
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") toggleDrawer(false);
+      });
+
+      // Scroll reveal animations
+      const reveal = (el) => el.classList.add("in");
+      const animated = document.querySelectorAll("[data-animate]");
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                reveal(entry.target);
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        animated.forEach((el) => io.observe(el));
+      } else {
+        animated.forEach(reveal);
+      }
+    </script>
+  </body>
+</html>
